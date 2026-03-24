@@ -23,7 +23,7 @@ def resolve_home_directory() -> str:
 
 def build_base_url() -> str:
     prefix = os.environ.get("JUPYTERHUB_SERVICE_PREFIX", "").rstrip("/")
-    return f"{prefix}/marimo/"
+    return f"{prefix}/marimo"
 
 
 def setup_marimo() -> dict:
@@ -40,13 +40,13 @@ def setup_marimo() -> dict:
         "{port}",
         "--base-url",
         base_url,
+        "--token",
         "--token-password",
         token,
         "--headless",
     ]
 
-    # Encode credentials for Basic auth header injection.
-    credentials = base64.b64encode(f":{token}".encode()).decode()
+    credentials = 'Basic ' + base64.b64encode(b' :' + token.encode()).decode()
 
     return {
         "command": command,
@@ -54,7 +54,7 @@ def setup_marimo() -> dict:
         "timeout": 120,
         "absolute_url": True,
         "request_headers_override": {
-            "Authorization": f"Basic {credentials}",
+            "Authorization": credentials,
         },
         "launcher_entry": {
             "title": "Marimo",

@@ -24,9 +24,9 @@ def test_resolve_home_directory(monkeypatch, home: str, expected: str):
 @pytest.mark.parametrize(
     ("hub_prefix", "expected_base_url"),
     [
-        ("/user/johndoe/", "/user/johndoe/marimo/"),
-        ("/user/johndoe", "/user/johndoe/marimo/"),
-        ("", "/marimo/"),
+        ("/user/johndoe/", "/user/johndoe/marimo"),
+        ("/user/johndoe", "/user/johndoe/marimo"),
+        ("", "/marimo"),
     ],
 )
 def test_build_base_url(monkeypatch, hub_prefix: str, expected_base_url: str):

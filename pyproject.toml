@@ -22,7 +22,7 @@ classifiers = [
 dependencies = ["jupyter-server-proxy>=4.0", "marimo>=0.20"]
 
 [dependency-groups]
-dev = ["pytest>=8", "ruff>=0.15.7"]
+dev = ["pytest>=8", "ruff>=0.15.7", "jupyterlab>=4.0"]
 
 [project.entry-points.jupyter_serverproxy_servers]
 marimo = "swan_marimo_proxy:setup_marimo"
